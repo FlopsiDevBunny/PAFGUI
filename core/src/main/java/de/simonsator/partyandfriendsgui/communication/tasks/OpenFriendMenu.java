@@ -47,6 +47,7 @@ public class OpenFriendMenu extends CommunicationTask implements MainMenu {
 	public void executeTask(Player pPlayer, JsonObject pJObj) {
 		MenuManager.getInstance().setLastOpened(pPlayer, this);
 		JsonArray friends = pJObj.get("friends").getAsJsonArray();
+		JsonArray friendRequests = pJObj.get("friendRequests").getAsJsonArray();
 		final int friendsCount = friends.size();
 		int in = friendsCount + 1;
 		int toSet = (in / 9 + 1) * 9 + 18;
@@ -98,6 +99,12 @@ public class OpenFriendMenu extends CommunicationTask implements MainMenu {
 			for (int k = 0; k < toSet - 9; k++)
 				if (inv.getItem(k) == null)
 					inv.setItem(k, ItemManager.getInstance().FRIEND_MENU_PLACEHOLDER);
+		if(friendRequests.size() == 0) {
+			inv.setItem(8, ItemManager.getInstance().NO_PENDING_FRIEND_REQUESTS_ITEM);
+		} else {
+			inv.setItem(8, ItemManager.getInstance().FRIEND_REQUEST_ITEM);
+			pPlayer.sendMessage(friendRequests.getAsString());
+		}
 		pPlayer.openInventory(inv);
 	}
 

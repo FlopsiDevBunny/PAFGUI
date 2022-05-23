@@ -1,5 +1,6 @@
 package de.simonsator.partyandfriendsgui.manager;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -980,7 +981,7 @@ public class LanguageManager {
 			default:
 				break;
 		}
-		return toSend;
+		return StringEscapeUtils.unescapeJava(toSend);
 	}
 
 	private enum Language {
