@@ -23,13 +23,11 @@ public class OpenOnlineFriendMenu extends OpenFriendDetailView {
 
 	@Override
 	String shortUp(String pHandOver) {
+		StringTokenizer st = new StringTokenizer(pHandOver, " ");
+		pHandOver = st.nextToken() + ONLINE_SUFFIX;
 		if (pHandOver.length() > 32) {
-			StringTokenizer st = new StringTokenizer(pHandOver, " ");
-			pHandOver = st.nextToken() + ONLINE_SUFFIX;
-			if (pHandOver.length() > 32) {
-				StringTokenizer stn = new StringTokenizer(pHandOver, "(");
-				pHandOver = stn.nextToken() + "(On)";
-			}
+			StringTokenizer stn = new StringTokenizer(pHandOver, "(");
+			pHandOver = stn.nextToken() + "(On)";
 		}
 		return pHandOver;
 	}
@@ -37,8 +35,10 @@ public class OpenOnlineFriendMenu extends OpenFriendDetailView {
 	@Override
 	protected Inventory createInventory(String pHandOver, Player pPlayer) {
 		Inventory inv = createStandardInventory(pHandOver);
-		inv.setItem(Main.getInstance().getConfig().getInt("Inventories.FriendDetailView.InviteIntoParty.Place"), ItemManager.getInstance().FRIEND_INVITE_PARTY);
-		inv.setItem(Main.getInstance().getConfig().getInt("Inventories.FriendDetailView.JumpTo.Place"), ItemManager.getInstance().JUMP_TO_FRIEND);
+		inv.setItem(Main.getInstance().getConfig().getInt("Inventories.FriendDetailView.InviteIntoParty.Place"),
+				ItemManager.getInstance().FRIEND_INVITE_PARTY);
+		inv.setItem(Main.getInstance().getConfig().getInt("Inventories.FriendDetailView.JumpTo.Place"),
+				ItemManager.getInstance().JUMP_TO_FRIEND);
 		Bukkit.getServer().getPluginManager().callEvent(new FriendDetailViewCreationEvent(inv, pPlayer, true));
 		return inv;
 	}

@@ -5,6 +5,7 @@ import de.simonsator.partyandfriendsgui.api.AdvancedItem;
 import de.simonsator.partyandfriendsgui.api.menu.MenuManager;
 import de.simonsator.partyandfriendsgui.listener.ItemsManager;
 import de.simonsator.partyandfriendsgui.manager.ItemManager;
+import de.simonsator.partyandfriendsgui.utilities.inventorynamegetter.InventoryNameGetter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
@@ -37,8 +38,10 @@ public class EveryMenuTasks extends InventoryAssignmentTask {
 	}
 
 	@Override
-	public boolean isApplicable(String pName) {
-		return true;
+	public boolean isApplicable(InventoryClickEvent pEvent) {
+		return InventoryNameGetter.getInstance().getName(pEvent).startsWith("§") &&
+				AdvancedItem.itemsAreEqual(pEvent.getCurrentItem(),
+						ItemManager.getInstance().BACK_ITEM, false);
 	}
 
 	@Override

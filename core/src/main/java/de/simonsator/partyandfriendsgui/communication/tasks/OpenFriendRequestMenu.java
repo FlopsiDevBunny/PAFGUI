@@ -59,10 +59,6 @@ public class OpenFriendRequestMenu extends CommunicationTask implements MainMenu
 		}
 		createMenuBar(pPlayer, inv);
 		Bukkit.getServer().getPluginManager().callEvent(new MainMenuCreationEvent(pPlayer, inv, pJObj, getClass()));
-
-		// Custom Force Back Main Menu
-		inv.setItem(8, ItemManager.getInstance().OPEN_FRIEND_GUI_ITEM);
-
 		pPlayer.openInventory(inv);
 	}
 

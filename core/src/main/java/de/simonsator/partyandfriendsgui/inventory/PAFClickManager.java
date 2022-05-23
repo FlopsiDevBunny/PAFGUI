@@ -7,6 +7,7 @@ import de.simonsator.partyandfriendsgui.inventory.tasks.inventoryassignment.part
 import de.simonsator.partyandfriendsgui.inventory.tasks.inventoryassignment.party.PartyMenu;
 import de.simonsator.partyandfriendsgui.listener.ItemsManager;
 import de.simonsator.partyandfriendsgui.utilities.inventorynamegetter.InventoryNameGetter;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -59,6 +60,9 @@ public class PAFClickManager implements Listener {
 				if (pEvent.getCurrentItem() != null && pEvent.getCurrentItem().hasItemMeta() &&
 						pEvent.getCurrentItem().getItemMeta().hasDisplayName()) {
 					task.executeTask(pEvent);
+					if (pEvent.isShiftClick()) {
+						((Player) pEvent.getWhoClicked()).updateInventory();
+					}
 				}
 			}
 		}

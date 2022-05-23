@@ -12,7 +12,6 @@ import de.simonsator.partyandfriendsgui.communication.BungeecordCommunication;
 import de.simonsator.partyandfriendsgui.manager.ItemManager;
 import de.simonsator.partyandfriendsgui.manager.LanguageManager;
 import de.simonsator.partyandfriendsgui.manager.TextIdentifier;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -141,7 +140,7 @@ public class OpenFriendMenu extends CommunicationTask implements MainMenu {
 		if (Main.getInstance().getConfig().getBoolean("Inventories.FriendMenu.OnlineFriends.ShowServer"))
 			if (Main.getInstance().getConfig().getBoolean("Design.Lore.ShowServerInLore")) {
 				List<String> lore = new ArrayList<>();
-				lore.add(LanguageManager.getInstance().getText(TextIdentifier.ONLINE_ON).replace("[SERVER]", StringUtils.capitalize(pFriend.getAsJsonObject().get("serverName").getAsString())));
+				lore.add(LanguageManager.getInstance().getText(TextIdentifier.ONLINE_ON).replace("[SERVER]", pFriend.getAsJsonObject().get("serverName").getAsString()));
 				meta.setLore(lore);
 			} else {
 				meta.setDisplayName(Main.getInstance().getColor(0) + playerName + Main.getInstance().getColor(1)
