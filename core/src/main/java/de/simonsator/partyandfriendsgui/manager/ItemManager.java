@@ -203,7 +203,9 @@ public class ItemManager {
 		itemPart = "Inventories.FriendAcceptMenu.DenyItem.";
 		FRIEND_REQUEST_ACCEPT_MENU_DENY = setupHelper.getItemStack(TextIdentifier.DENY_FRIEND_REQUEST_ITEM, itemPart + "ItemData", itemPart + "MetaData", itemPart + "UseCustomTexture", itemPart + "Base64CustomTexture", itemPart + "CustomModelData");
 		itemPart = "Inventories.MainMenuMenuBar.FriendItem.";
-		OPEN_FRIEND_GUI_ITEM = setupHelper.getItemStack(TextIdentifier.OPEN_FRIEND_MENU, itemPart + "ItemData", itemPart + "MetaData", itemPart + "UseCustomTexture", itemPart + "Base64CustomTexture", itemPart + "CustomModelData");
+		if (pConfig.getBoolean(itemPart + "Use")) {
+			OPEN_FRIEND_GUI_ITEM = setupHelper.getItemStack(TextIdentifier.OPEN_FRIEND_MENU, itemPart + "ItemData", itemPart + "MetaData", itemPart + "UseCustomTexture", itemPart + "Base64CustomTexture", itemPart + "CustomModelData");
+		} else OPEN_FRIEND_GUI_ITEM = null;
 		itemPart = "Inventories.FriendMenu.NoFriendsItem.";
 		if (pConfig.getBoolean(itemPart + "Use")) {
 			NO_FRIENDS = setupHelper.getItemStack(TextIdentifier.NO_FRIENDS, itemPart + "ItemData", itemPart + "MetaData", itemPart + "UseCustomTexture", itemPart + "Base64CustomTexture", itemPart + "CustomModelData");

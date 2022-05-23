@@ -310,7 +310,7 @@ public class Main extends JavaPlugin {
 					String errorMessage = "§4The value  which was provided by you in the config under \"Messages.Experimental.FriendHeadOfflineSuffix\" and \"Messages.Experimental.FriendHeadOnlineSuffix\" are the same, but they may not be the same. Please change one of those values to another one. The default suffixes will be used.";
 					suffixLoadingError(errorMessage);
 				} else {
-					if (offlineSuffix.length() > 9 || onlineSuffix.length() > 9) {
+					if (offlineSuffix.length() > 12 || onlineSuffix.length() > 12) {
 						String errorMessage = "§4The value  which was provided by you in the config under \"Messages.Experimental.FriendHeadOfflineSuffix\" and/or \"Messages.Experimental.FriendHeadOnlineSuffix\" are too long. They maximum allowed length of those values is 12. The default suffixes will be used.";
 						suffixLoadingError(errorMessage);
 					} else if (offlineSuffix.isEmpty() || onlineSuffix.isEmpty()) {
@@ -381,7 +381,7 @@ public class Main extends JavaPlugin {
 			case 4:
 				if (getLanguage().equalsIgnoreCase("own"))
 					if (getConfig().getString("Messages.FriendRequestFriendColor").length() == 2)
-						return getConfig().getString("Messages.FriendsStatusOfflineColor");
+						return getConfig().getString("Messages.FriendRequestFriendColor");
 					else {
 						System.out.println("[PartyAndFriends] The colors must have exactly two chars.");
 						return "§7";

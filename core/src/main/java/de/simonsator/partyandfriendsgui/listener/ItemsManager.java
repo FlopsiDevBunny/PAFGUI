@@ -59,15 +59,19 @@ public class ItemsManager implements Listener {
 			PROFILE_ITEM_LORE.add(splitter.next());
 		if (SUPPORT_MULTI_WORLD)
 			Main.getInstance().getServer().getPluginManager().registerEvents(new OnWorldSwitch(this), Main.getInstance());
-		if (ItemManager.getInstance().USE_ITEM_META_DATA)
-			PROFILE_ITEM = new ItemStack(ItemManager.getInstance().PLAYER_HEAD_MATERIAL, 1, (short) 3);
-		else
-			PROFILE_ITEM = new ItemStack(ItemManager.getInstance().PLAYER_HEAD_MATERIAL, 1);
-		ItemMeta meta = PROFILE_ITEM.getItemMeta();
-		meta.setDisplayName(profileItemName);
-		meta.setLore(PROFILE_ITEM_LORE);
-		PROFILE_ITEM.setItemMeta(meta);
+		if (Main.getInstance().getConfig().getBoolean("Inventories.ToolBar.ProfileItem.Use")) {
+			if (ItemManager.getInstance().USE_ITEM_META_DATA)
+				PROFILE_ITEM = new ItemStack(ItemManager.getInstance().PLAYER_HEAD_MATERIAL, 1, (short) 3);
+			else
+				PROFILE_ITEM = new ItemStack(ItemManager.getInstance().PLAYER_HEAD_MATERIAL, 1);
 
+			ItemMeta meta = PROFILE_ITEM.getItemMeta();
+			meta.setDisplayName(profileItemName);
+			meta.setLore(PROFILE_ITEM_LORE);
+			PROFILE_ITEM.setItemMeta(meta);
+		} else {
+			PROFILE_ITEM = null;
+		}
 	}
 
 	public static boolean isHideItem(ItemStack pItem) {
@@ -218,6 +222,8 @@ public class ItemsManager implements Listener {
 	 * @return The friend head item
 	 */
 	public ItemStack getHead(Player pPlayer) {
+		if (PROFILE_ITEM == null)
+			return null;
 		ItemStack head = PROFILE_ITEM.clone();
 		if (Main.getInstance().getConfig().getBoolean("Inventories.ToolBar.ProfileItem.UsePlayerSkin") && Main.getInstance().getConfig().getBoolean("General.SkinHeadDownload")) {
 			SkullMeta skull = (SkullMeta) head.getItemMeta();

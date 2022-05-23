@@ -6,7 +6,7 @@ package de.simonsator.dependencies;
  */
 public class GsonForOldVersions extends Dependency {
 	public GsonForOldVersions() {
-		super("Gson-for-1-7-10", "http://simonsator.de/plugins/Gson-for-17-1.0-SNAPSHOT.jar");
+		super("Gson-for-1-7-10", "https://simonsator.de/plugins/Gson-for-17-1.0-SNAPSHOT.jar");
 	}
 
 	@Override

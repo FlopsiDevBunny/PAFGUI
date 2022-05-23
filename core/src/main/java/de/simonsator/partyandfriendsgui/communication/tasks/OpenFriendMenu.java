@@ -12,7 +12,6 @@ import de.simonsator.partyandfriendsgui.communication.BungeecordCommunication;
 import de.simonsator.partyandfriendsgui.manager.ItemManager;
 import de.simonsator.partyandfriendsgui.manager.LanguageManager;
 import de.simonsator.partyandfriendsgui.manager.TextIdentifier;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -48,7 +47,6 @@ public class OpenFriendMenu extends CommunicationTask implements MainMenu {
 	public void executeTask(Player pPlayer, JsonObject pJObj) {
 		MenuManager.getInstance().setLastOpened(pPlayer, this);
 		JsonArray friends = pJObj.get("friends").getAsJsonArray();
-		JsonArray friendRequests = pJObj.get("friendRequests").getAsJsonArray();
 		final int friendsCount = friends.size();
 		int in = friendsCount + 1;
 		int toSet = (in / 9 + 1) * 9 + 18;
@@ -100,12 +98,6 @@ public class OpenFriendMenu extends CommunicationTask implements MainMenu {
 			for (int k = 0; k < toSet - 9; k++)
 				if (inv.getItem(k) == null)
 					inv.setItem(k, ItemManager.getInstance().FRIEND_MENU_PLACEHOLDER);
-		if(friendRequests.size() == 0) {
-			inv.setItem(8, ItemManager.getInstance().NO_PENDING_FRIEND_REQUESTS_ITEM);
-		} else {
-			inv.setItem(8, ItemManager.getInstance().FRIEND_REQUEST_ITEM);
-			pPlayer.sendMessage(friendRequests.getAsString());
-		}
 		pPlayer.openInventory(inv);
 	}
 
@@ -141,7 +133,7 @@ public class OpenFriendMenu extends CommunicationTask implements MainMenu {
 		if (Main.getInstance().getConfig().getBoolean("Inventories.FriendMenu.OnlineFriends.ShowServer"))
 			if (Main.getInstance().getConfig().getBoolean("Design.Lore.ShowServerInLore")) {
 				List<String> lore = new ArrayList<>();
-				lore.add(LanguageManager.getInstance().getText(TextIdentifier.ONLINE_ON).replace("[SERVER]", StringUtils.capitalize(pFriend.getAsJsonObject().get("serverName").getAsString())));
+				lore.add(LanguageManager.getInstance().getText(TextIdentifier.ONLINE_ON).replace("[SERVER]", pFriend.getAsJsonObject().get("serverName").getAsString()));
 				meta.setLore(lore);
 			} else {
 				meta.setDisplayName(Main.getInstance().getColor(0) + playerName + Main.getInstance().getColor(1)

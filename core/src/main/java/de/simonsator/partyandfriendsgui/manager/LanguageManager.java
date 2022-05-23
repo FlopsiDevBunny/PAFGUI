@@ -1,7 +1,5 @@
 package de.simonsator.partyandfriendsgui.manager;
 
-import de.simonsator.partyandfriendsgui.utilities.UnicodeTranslator;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -41,7 +39,7 @@ public class LanguageManager {
 						toSend = "§5§lFriends §7Page ";
 						break;
 					case OWN:
-						toSend = UnicodeTranslator.UnicodeTranslator(CONFIG.getString("Inventories.FriendMenu.Name"));
+						toSend = CONFIG.getString("Inventories.FriendMenu.Name");
 						break;
 					case GERMAN:
 						toSend = "§5§lFreunde §7Seite ";
@@ -385,7 +383,7 @@ public class LanguageManager {
 						toSend = "§aYou will now receive friend requests";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouReceiveFriendRequests");
+						toSend = CONFIG.getString("Messages.YouReceiveFriendRequests") + "§a";
 						break;
 					case GERMAN:
 						toSend = "§aDu erhälst Freundschaftsanfragen";
@@ -398,7 +396,7 @@ public class LanguageManager {
 						toSend = "§cYou will not receive friend requests";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouReceiveNoFriendRequests");
+						toSend = CONFIG.getString("Messages.YouReceiveNoFriendRequests") + "§b";
 						break;
 					case GERMAN:
 						toSend = "§cDu erhälst keine Freundschaftsanfragen";
@@ -411,7 +409,7 @@ public class LanguageManager {
 						toSend = "§aYou will receive party invitations from everyone";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouReceivePartyInvitations");
+						toSend = CONFIG.getString("Messages.YouReceivePartyInvitations") + "§c";
 						break;
 					case GERMAN:
 						toSend = "§aDu erhälst Party Einladungen von jedem";
@@ -424,7 +422,7 @@ public class LanguageManager {
 						toSend = "§cYou will only receive party invitations from your friends";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouReceivePartyInvitationsOnlyFromFriends");
+						toSend = CONFIG.getString("Messages.YouReceivePartyInvitationsOnlyFromFriends") + "§d";
 						break;
 					case GERMAN:
 						toSend = "§cDu erhälst Party Einladungen nur von Freunden";
@@ -437,7 +435,7 @@ public class LanguageManager {
 						toSend = "§aYour online status will be shown";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YourStatusWillBeShownOnline");
+						toSend = CONFIG.getString("Messages.YourStatusWillBeShownOnline") + "§e";
 						break;
 					case GERMAN:
 						toSend = "§aDein Online Status wird angezeigt";
@@ -450,7 +448,7 @@ public class LanguageManager {
 						toSend = "§cYour online status will not be shown";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YourStatusWillBeShownOffline");
+						toSend = CONFIG.getString("Messages.YourStatusWillBeShownOffline") + "§f";
 						break;
 					case GERMAN:
 						toSend = "§cDein Online Status wird nicht angezeigt";
@@ -463,7 +461,7 @@ public class LanguageManager {
 						toSend = "§aYou will receive a notification when a friend of yours goes online/offline";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouReceiveOnlineStatusNotifcation");
+						toSend = CONFIG.getString("Messages.YouReceiveOnlineStatusNotifcation") + "§0";
 						break;
 					case GERMAN:
 						toSend = "§aDu erhälst eine Benachrichtigung, wenn ein Freund Online/Offline geht";
@@ -476,7 +474,7 @@ public class LanguageManager {
 						toSend = "§cYou will not receive a notification when a friend of yours goes online/offline";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouDoNotReceiveOnlineStatusNotifcation");
+						toSend = CONFIG.getString("Messages.YouDoNotReceiveOnlineStatusNotifcation") + "§1";
 						break;
 					case GERMAN:
 						toSend = "§cDu erhälst keine Benachrichtigung mehr, wenn ein Freund Online/Offline geht";
@@ -490,7 +488,7 @@ public class LanguageManager {
 						toSend = "§cNo one can jump to you";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.NoJump");
+						toSend = CONFIG.getString("Messages.NoJump") + "§2";
 						break;
 					case GERMAN:
 						toSend = "§cFreunde können nicht zu dir springen";
@@ -503,7 +501,7 @@ public class LanguageManager {
 						toSend = "§aFriends can jump to you";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.JumpAllowed");
+						toSend = CONFIG.getString("Messages.JumpAllowed") + "§3";
 						break;
 					case GERMAN:
 						toSend = "§aFreunde können zu dir springen";
@@ -516,7 +514,7 @@ public class LanguageManager {
 						toSend = "§aYou receive messages";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouReceiveMessages");
+						toSend = CONFIG.getString("Messages.YouReceiveMessages") + "§4";
 						break;
 					case GERMAN:
 						toSend = "§aDu erhälst Nachrichten";
@@ -529,7 +527,7 @@ public class LanguageManager {
 						toSend = "§cYou will not receive messages";
 						break;
 					case OWN:
-						toSend = CONFIG.getString("Messages.YouWontReceiveMessages");
+						toSend = CONFIG.getString("Messages.YouWontReceiveMessages") + "§5";
 						break;
 					case GERMAN:
 						toSend = "§cDu erhälst keine Nachrichten";
@@ -982,7 +980,7 @@ public class LanguageManager {
 			default:
 				break;
 		}
-		return StringEscapeUtils.unescapeJava(toSend);
+		return toSend;
 	}
 
 	private enum Language {

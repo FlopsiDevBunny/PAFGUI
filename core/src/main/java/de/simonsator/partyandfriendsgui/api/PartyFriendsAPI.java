@@ -112,6 +112,7 @@ public class PartyFriendsAPI {
 	 *                <li>2 Show only friends</li>
 	 *                <li>3 Show only people of the server team</li>
 	 *                <li>4 Hide all players</li>
+	 *                <li>5 Show only party members</li>
 	 *                </ul>
 	 */
 	public static void setHideMode(Player pPlayer, int worth) {
