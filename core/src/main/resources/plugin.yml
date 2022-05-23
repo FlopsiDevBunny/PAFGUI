@@ -1,0 +1,5 @@
+main: de.simonsator.partyandfriendsgui.Main
+name: PartyAndFriendsGUI
+version: ${project.version}
+author: Simonsator
+api-version: 1.13
